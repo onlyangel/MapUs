@@ -2,17 +2,16 @@ package MapUs
 
 import (
 	"net/http"
-    "html/template"
-    "os"
-    "bufio"
     "fmt"
-    "strconv"
+    "appengine"
+    "appengine/datastore"
+    "time"
 )
 
 func init() {
     //http.HandleFunc("/", home)
     http.HandleFunc("/ws/createSecionId", createSecionId)
-    http.HandleFunc("/ws/addList", listAdd)
+    //http.HandleFunc("/ws/addList", listAdd)
     
 }
 
