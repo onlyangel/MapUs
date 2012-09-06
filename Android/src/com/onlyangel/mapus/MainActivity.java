@@ -1,6 +1,7 @@
 package com.onlyangel.mapus;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,11 +21,19 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         entity=this;
         
+        this.startService(new Intent(this, UpdateService.class));
+        
         NetworkTools nt = new NetworkTools();
         
 		nt.fetchSecion("http://thegoapp.appspot.com/ws/createSecionId", handler);
 		
     }
+    
+    @Override	
+	public void onDestroy() {	
+    	this.stopService(new Intent(this, UpdateService.class));
+    	super.onDestroy();
+	}
     
     static Handler handler = new Handler() {
         @Override
